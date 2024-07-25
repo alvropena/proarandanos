@@ -14,91 +14,46 @@
 					}
 				]
 			},
-			"repeatable": {
+			"repeatable_zone": {
 				"__TYPE__": "GroupContentType",
 				"value": [
 					{
 						"__TYPE__": "GroupItemContent",
 						"value": [
 							[
+								"title",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Officia duis proident consectetur consectetur reprehenderit incididunt esse sint reprehenderit. Amet velit ut quis minim nostrud commodo laboris elit pariatur proident labore exercitation."
+											}
+										}
+									]
+								}
+							],
+							[
+								"description",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Reprehenderit do minim reprehenderit cillum culpa ullamco velit fugiat."
+											}
+										}
+									]
+								}
+							],
+							[
 								"icon",
 								{
 									"__TYPE__": "FieldContent",
-									"value": "calendar",
+									"value": "bargraph",
 									"type": "Select"
-								}
-							],
-							[
-								"title",
-								{
-									"__TYPE__": "StructuredTextContent",
-									"value": [
-										{
-											"type": "heading3",
-											"content": {
-												"text": "People"
-											}
-										}
-									]
-								}
-							],
-							[
-								"description",
-								{
-									"__TYPE__": "StructuredTextContent",
-									"value": [
-										{
-											"type": "paragraph",
-											"content": {
-												"text": "Tempor officia non eu et occaecat voluptate enim. Duis eu cillum minim ullamco deserunt ad in. In quis fugiat mollit eu."
-											}
-										}
-									]
-								}
-							]
-						]
-					},
-					{
-						"__TYPE__": "GroupItemContent",
-						"value": [
-							[
-								"icon",
-								{
-									"__TYPE__": "FieldContent",
-									"type": "Select",
-									"value": "clover"
-								}
-							],
-							[
-								"title",
-								{
-									"__TYPE__": "StructuredTextContent",
-									"value": [
-										{
-											"type": "heading3",
-											"content": {
-												"text": "fasdf",
-												"spans": []
-											},
-											"direction": "ltr"
-										}
-									]
-								}
-							],
-							[
-								"description",
-								{
-									"__TYPE__": "StructuredTextContent",
-									"value": [
-										{
-											"type": "paragraph",
-											"content": {
-												"text": "fadsfasfads",
-												"spans": []
-											},
-											"direction": "ltr"
-										}
-									]
 								}
 							]
 						]
