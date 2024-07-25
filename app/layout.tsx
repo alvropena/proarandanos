@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: settings.data.site_title || "Proarandanos",
     description: settings.data.meta_description || "Proarandanos - Arándanos",
     openGraph: {
-      images: [settings.data.og_image.url],
+      images: [settings.data.og_image.url || ""],
     },
   }
 }
