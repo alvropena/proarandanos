@@ -5,10 +5,9 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type HomepageDocumentDataSlicesSlice =
+  | FeaturesSlice
   | TextWithImageSlice
   | CallToActionSlice
-  | TestimonialsSlice
-  | FeaturesSlice
   | HeroSlice;
 
 type HomepageDocumentDataSlices1Slice = never;
@@ -71,7 +70,7 @@ interface HomepageDocumentData {
   meta_image: prismic.ImageField<never>;
 
   /**
-   * `slices1` field in *Homepage*
+   * Slice Zone field in *Homepage*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
@@ -99,8 +98,6 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
-  | TestimonialsSlice
-  | FeaturesSlice
   | TextWithImageSlice
   | HeroSlice
   | CallToActionSlice;
@@ -267,6 +264,8 @@ export type SettingsDocument<Lang extends string = string> =
     Lang
   >;
 
+type TestimonialDocumentDataSlicesSlice = never;
+
 /**
  * Content for Testimonial documents
  */
@@ -314,6 +313,17 @@ interface TestimonialDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   avatar: prismic.ImageField<never>;
+
+  /**
+   * Slice Zone field in *Testimonial*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonial.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<TestimonialDocumentDataSlicesSlice>;
 }
 
 /**
@@ -414,35 +424,35 @@ export type CallToActionSlice = prismic.SharedSlice<
 >;
 
 /**
- * Item in *Features → Default → Primary → Repeatable Zone*
+ * Item in *Features → Default → Primary → items*
  */
-export interface FeaturesSliceDefaultPrimaryRepeatableZoneItem {
+export interface FeaturesSliceDefaultPrimaryItemsItem {
   /**
-   * Icon field in *Features → Default → Primary → Repeatable Zone*
+   * Icon field in *Features → Default → Primary → items*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
-   * - **API ID Path**: features.default.primary.repeatable_zone[].icon
+   * - **API ID Path**: features.default.primary.items[].icon
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   icon: prismic.SelectField<"calendar" | "bargraph" | "clover" | "hourglass">;
 
   /**
-   * Title field in *Features → Default → Primary → Repeatable Zone*
+   * Title field in *Features → Default → Primary → items*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: features.default.primary.repeatable_zone[].title
+   * - **API ID Path**: features.default.primary.items[].title
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   title: prismic.RichTextField;
 
   /**
-   * Description field in *Features → Default → Primary → Repeatable Zone*
+   * Description field in *Features → Default → Primary → items*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: features.default.primary.repeatable_zone[].description
+   * - **API ID Path**: features.default.primary.items[].description
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField;
@@ -463,16 +473,14 @@ export interface FeaturesSliceDefaultPrimary {
   heading: prismic.RichTextField;
 
   /**
-   * Repeatable Zone field in *Features → Default → Primary*
+   * items field in *Features → Default → Primary*
    *
    * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: features.default.primary.repeatable_zone[]
+   * - **API ID Path**: features.default.primary.items[]
    * - **Documentation**: https://prismic.io/docs/field#group
    */
-  repeatable_zone: prismic.GroupField<
-    Simplify<FeaturesSliceDefaultPrimaryRepeatableZoneItem>
-  >;
+  items: prismic.GroupField<Simplify<FeaturesSliceDefaultPrimaryItemsItem>>;
 }
 
 /**
@@ -656,61 +664,6 @@ type HeroSliceVariation = HeroSliceDefault | HeroSliceHorizontal;
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
 /**
- * Primary content in *Testimonials → Default → Primary*
- */
-export interface TestimonialsSliceDefaultPrimary {
-  /**
-   * Heading field in *Testimonials → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: testimonials.default.primary.heading
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  heading: prismic.RichTextField;
-
-  /**
-   * Testimonial field in *Testimonials → Default → Primary*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: testimonials.default.primary.testimonial
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  testimonial: prismic.ContentRelationshipField<"testimonial">;
-}
-
-/**
- * Default variation for Testimonials Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type TestimonialsSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<TestimonialsSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *Testimonials*
- */
-type TestimonialsSliceVariation = TestimonialsSliceDefault;
-
-/**
- * Testimonials Shared Slice
- *
- * - **API ID**: `testimonials`
- * - **Description**: Testimonials
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type TestimonialsSlice = prismic.SharedSlice<
-  "testimonials",
-  TestimonialsSliceVariation
->;
-
-/**
  * Primary content in *TextWithImage → Default → Primary*
  */
 export interface TextWithImageSliceDefaultPrimary {
@@ -848,13 +801,14 @@ declare module "@prismicio/client" {
       SettingsDocumentDataSlicesSlice,
       TestimonialDocument,
       TestimonialDocumentData,
+      TestimonialDocumentDataSlicesSlice,
       AllDocumentTypes,
       CallToActionSlice,
       CallToActionSliceDefaultPrimary,
       CallToActionSliceVariation,
       CallToActionSliceDefault,
       FeaturesSlice,
-      FeaturesSliceDefaultPrimaryRepeatableZoneItem,
+      FeaturesSliceDefaultPrimaryItemsItem,
       FeaturesSliceDefaultPrimary,
       FeaturesSliceVariation,
       FeaturesSliceDefault,
@@ -864,10 +818,6 @@ declare module "@prismicio/client" {
       HeroSliceVariation,
       HeroSliceDefault,
       HeroSliceHorizontal,
-      TestimonialsSlice,
-      TestimonialsSliceDefaultPrimary,
-      TestimonialsSliceVariation,
-      TestimonialsSliceDefault,
       TextWithImageSlice,
       TextWithImageSliceDefaultPrimary,
       TextWithImageSliceImageRightPrimary,

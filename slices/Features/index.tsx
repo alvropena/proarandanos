@@ -4,8 +4,8 @@ import {
   PrismicRichText,
   JSXMapSerializer,
 } from "@prismicio/react";
-import Bounded from "../../app/components/bounded";
-import Heading from "../../app/components/heading";
+import Bounded from "@/app/components/bounded";
+import Heading from "@/app/components/heading";
 
 const components: JSXMapSerializer = {
   heading2: ({ children }) => (
@@ -53,12 +53,12 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
       <PrismicRichText components={components} field={slice.primary.heading} />
 
       <div className=" grid sm:grid-cols-2 lg:grid-cols-4 max-w-5xl gap-x-8 gap-y-12 mx-auto sm:place-items-start place-items-center">
-        {slice.items.map((item, index) => (
+        {slice.primary.items.map((item, index) => (
           <div
             key={index}
             className="max-w-xs grid sm:place-items-start place-items-center"
           >
-            {item.icon && <div className="mb-5">{item.icon}</div>}
+            {item.icon && <div className="mb-5">{icons[item.icon]}</div>}
             <PrismicRichText components={components} field={item.title} />
             <PrismicRichText components={components} field={item.description} />
           </div>

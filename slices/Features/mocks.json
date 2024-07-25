@@ -7,28 +7,36 @@
 				"__TYPE__": "StructuredTextContent",
 				"value": [
 					{
-						"type": "heading2",
+						"type": "paragraph",
 						"content": {
-							"text": "Snake"
+							"text": "Sit est cillum nostrud cillum aliquip."
 						}
 					}
 				]
 			},
-			"repeatable_zone": {
+			"items": {
 				"__TYPE__": "GroupContentType",
 				"value": [
 					{
 						"__TYPE__": "GroupItemContent",
 						"value": [
 							[
+								"icon",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "bargraph",
+									"type": "Select"
+								}
+							],
+							[
 								"title",
 								{
 									"__TYPE__": "StructuredTextContent",
 									"value": [
 										{
-											"type": "paragraph",
+											"type": "heading3",
 											"content": {
-												"text": "Officia duis proident consectetur consectetur reprehenderit incididunt esse sint reprehenderit. Amet velit ut quis minim nostrud commodo laboris elit pariatur proident labore exercitation."
+												"text": "Safety"
 											}
 										}
 									]
@@ -42,18 +50,10 @@
 										{
 											"type": "paragraph",
 											"content": {
-												"text": "Reprehenderit do minim reprehenderit cillum culpa ullamco velit fugiat."
+												"text": "Irure do anim quis aliqua."
 											}
 										}
 									]
-								}
-							],
-							[
-								"icon",
-								{
-									"__TYPE__": "FieldContent",
-									"value": "bargraph",
-									"type": "Select"
 								}
 							]
 						]

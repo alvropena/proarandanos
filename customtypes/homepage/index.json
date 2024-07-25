@@ -18,16 +18,13 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "features": {
+              "type": "SharedSlice"
+            },
             "text_with_image": {
               "type": "SharedSlice"
             },
             "call_to_action": {
-              "type": "SharedSlice"
-            },
-            "testimonials": {
-              "type": "SharedSlice"
-            },
-            "features": {
               "type": "SharedSlice"
             },
             "hero": {
@@ -65,7 +62,10 @@
       },
       "slices1": {
         "type": "Slices",
-        "fieldset": "Slice Zone"
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {}
+        }
       }
     }
   }
